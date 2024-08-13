@@ -283,8 +283,6 @@ int getFingerprintIDez() {
 }
 
 int readRFID(String chat_id) {
-  int f = 1;
-  while (f==1){
   // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent()) 
   {
@@ -315,13 +313,11 @@ int readRFID(String chat_id) {
     bot.sendMessage(chat_id, "Authorized access", "");
     Serial.println();
     delay(3000);
-    f = 0;
   }
  
  else   {
     bot.sendMessage(chat_id, "Access denied", "");
     delay(1000);
-    f = 1;
-  }
+    bot.sendMessage(chat_id, "Please scan your fingerprint!", "");
   }
 }
